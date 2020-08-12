@@ -44,7 +44,7 @@ class News
     }
 
     public static function getOneNews($id) {
-        return static::$news[$id];
+        return static::$news[$id] ?? null;
     }
 
     public static function getNewsByCategories($id) {

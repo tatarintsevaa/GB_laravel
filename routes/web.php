@@ -15,8 +15,15 @@ Route::get('/', 'IndexController@index')->name('home');
 
 Route::get('/admin', 'Admin\IndexController@index')->name('admin.index');
 
-Route::get('/news/', 'NewsController@index')->name('news');
-Route::get('/news/{id}', 'NewsController@show')->name('newsOne');
+Route::group([
+    'prefix' =>'news',
+    'namespace' => 'News'
+], function () {
+    Route::get('/', 'NewsController@index')->name('news');
+    Route::get('/{id}', 'NewsController@show')->name('newsOne');
+});
+
+
 
 Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/categories/{name}', 'CategoryController@show')->name('newsByCategories');

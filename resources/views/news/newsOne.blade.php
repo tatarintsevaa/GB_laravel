@@ -9,6 +9,6 @@
             <p>{{ $news['text'] }}</p>
         </div>
     @else
-        <div>Такой новости нет</div>
+        <div class="container">Такой новости нет</div>
     @endif
 @endsection
