@@ -8,8 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+{{--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"--}}
+    {{--          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">--}}
     <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
     <script src="{{ URL::asset('js/app.js') }}" defer ></script>
@@ -25,6 +25,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                @include('menu')
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -64,8 +65,7 @@
                 </ul>
             </div>
         </nav>
-        <h1 class="container title">ALLNews</h1>
-        @include('menu')
+{{--        <h1 class="container title">ALLNews</h1>--}}
     </div>
     <div class="content">
         <main role="main" class="py-4">

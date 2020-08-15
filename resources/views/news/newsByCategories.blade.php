@@ -1,7 +1,6 @@
 @extends('layouts.index')
 
 @section('content')
-
     <div class="row news-box">
         @forelse($news as $item)
             <div class="col-md-4">
@@ -13,5 +12,4 @@
             <p>Новостей нет</p>
         @endforelse
     </div>
-
 @endsection

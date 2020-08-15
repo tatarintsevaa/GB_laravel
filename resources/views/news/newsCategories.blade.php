@@ -4,8 +4,8 @@
        <div class="row justify-content-center">
            @forelse($categories as $category)
                <a href="{{ route('newsByCategories', ['name' => $category['slug']]) }}">
-                   <div class="col-md-4">
-                       {{ $category['name'] }}
+                   <div class="category-box col-md-4">
+                           <h3>{{ $category['name'] }}</h3>
                    </div>
                </a>
            @empty

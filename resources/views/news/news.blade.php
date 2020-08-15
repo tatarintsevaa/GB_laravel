@@ -9,7 +9,11 @@
                 <div class="col-md-4">
                     <h2>{{ $item['title'] }}</h2>
                     <p>{{ $item['text'] }}</p>
-                    <p><a class="btn btn-secondary" href="{{ route('newsOne', ['id' => $item['id']]) }}" role="button">View details &raquo;</a></p>
+                    <p>
+                        <a class="btn btn-secondary" href="{{ route('newsOne', ['id' => $item['id']]) }}" role="button">
+                            Подробнее &raquo;
+                        </a>
+                    </p>
                 </div>
             @empty
                 <p>Новостей нет</p>

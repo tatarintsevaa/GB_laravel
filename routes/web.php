@@ -13,7 +13,14 @@
 
 Route::get('/', 'IndexController@index')->name('home');
 
-Route::get('/admin', 'Admin\IndexController@index')->name('admin.index');
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'as' => 'admin.'
+], function () {
+    Route::get('/', 'IndexController@index')->name('index');
+    Route::get('/addNews', 'AddNewsController@index')->name('addNews');
+});
 
 Route::group([
     'prefix' =>'news',
