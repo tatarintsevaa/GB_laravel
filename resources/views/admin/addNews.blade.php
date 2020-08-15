@@ -8,7 +8,16 @@
         <div class="card-body">
             <form method="POST" action="#">
                 <div class="form-group row">
-                    {{-- список категорий --}}
+                    <label for="FormControlSelectTitle" class="col-md-4 col-form-label text-md-right">
+                        Выбор категории
+                    </label>
+                    <div class="col-md-6">
+                        <select class="form-control" id="FormControlSelectTitle">
+                            @foreach($categories as $category)
+                                <option>{{ $category['name'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group row">
@@ -23,10 +32,9 @@
                     <label for="text" class="col-md-4 col-form-label text-md-right">Текст</label>
 
                     <div class="col-md-6">
-                        <input id="text" type="textarea" class="form-control" name="text" autofocus>
+                        <textarea id="text" class="form-control" name="text" rows="3" autofocus></textarea>
                     </div>
                 </div>
-
 
                 <div class="form-group row mb-0">
                     <div class="col-md-8 offset-md-4">

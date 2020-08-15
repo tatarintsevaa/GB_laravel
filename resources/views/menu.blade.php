@@ -37,7 +37,9 @@
                 <a class="dropdown-item" href="{{ route('categories') }}">Категории новостей</a>
             </div>
     </li>
-    @include('admin.menu')
+    @if(true) {{-- что то вроде isAdmin --}}
+        @include('admin.menu')
+    @endif
 </ul>
 {{--<ul class="nav nav-tabs">--}}
 
