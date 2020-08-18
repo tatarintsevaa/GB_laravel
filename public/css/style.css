@@ -21,11 +21,11 @@
     display: flex;
     justify-content: space-between; }
   .footer__social a {
-    color: lightgray;
+    color: gray;
     padding: 0.25rem;
     transition: color 0.2s; }
   .footer__social a:hover {
-    color: gray; }
+    color: darkgray; }
 
 .nav {
   justify-content: center; }
@@ -45,5 +45,15 @@
   min-width: 20vw;
   border-radius: 0.25rem;
   margin: 0 0.5rem; }
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: gray; }
+
+.form-control:focus {
+  box-shadow: none; }
+
+option:hover {
+  background-color: lightgray; }
 
 /*# sourceMappingURL=style.css.map */

@@ -4,7 +4,7 @@
         Админка
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-        <a class="dropdown-item" href="{{ route('admin.addNews') }}">Добавление новостей</a>
+        <a class="dropdown-item" href="{{ route('admin.create') }}">Добавление новостей</a>
         {{--            <div class="dropdown-divider"></div>--}}
     </div>
 </li>

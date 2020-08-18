@@ -22,11 +22,11 @@
         justify-content: space-between
     &__social
         a
-            color: lightgray
+            color: gray
             padding: 0.25rem
             transition: color 0.2s
         a:hover
-            color: gray
+            color: darkgray
 
 
 .nav
@@ -43,3 +43,14 @@
     min-width: 20vw
     border-radius: 0.25rem
     margin: 0 0.5rem
+
+.dropdown-item.active,
+.dropdown-item:active
+    background-color: gray
+
+.form-control:focus
+    box-shadow: none
+
+option:hover
+    background-color: lightgray
+
