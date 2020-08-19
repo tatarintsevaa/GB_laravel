@@ -17,5 +17,9 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+
+        $response->assertSeeText('Список ТОП новостей');
+
+        $response->assertViewIs('index');
     }
 }

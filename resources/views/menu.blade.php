@@ -26,7 +26,7 @@
         @endif
             <div class="dropdown-menu" aria-labelledby="navbarDropdownNewsCategories">
                 {{--            <div class="dropdown-divider"></div>--}}
-                @forelse(\App\Category::getCategories() as $category)
+                @forelse(\App\Category::getCategories() as $category) {{--TODO Переделать, так нельзя--}}
                     <a class="dropdown-item " href="{{ route('newsByCategories', ['name' => $category['slug']]) }}">
                         {{ $category['name'] }}
                     </a>
