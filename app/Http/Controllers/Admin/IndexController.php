@@ -29,7 +29,7 @@ class IndexController extends Controller
             \Storage::put('public/news.json', json_encode($allNews, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
             return redirect()->route('newsOne', ['id' => $newNews['id']]);
         }
-        return view('admin.create')->with('categories', Category::getCategories());
+        return view('admin.create');
     }
 
     public function download(Request $request)
@@ -41,6 +41,6 @@ class IndexController extends Controller
                 ->header('Content-Disposition', "attachment; filename = {$category_name}.json")
                 ->setEncodingOptions(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         }
-        return view('admin.download')->with('categories', Category::getCategories());
+        return view('admin.download');
     }
 }
