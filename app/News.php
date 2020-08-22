@@ -2,27 +2,22 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 
 class News
 {
 
     public static function getNews()
     {
-        return json_decode(\Storage::get('public/news.json'), true);
+        return DB::table('news')->get();
     }
 
     public static function getOneNews($id) {
-        return static::getNews()[$id] ?? null;
+        return DB::table('news')->find($id) ?? null;
     }
 
     public static function getNewsByCategories($id) {
-        $news = [];
-        foreach (static::getNews() as $item) {
-            if ($id == $item['category_id']) {
-               array_push($news,$item);
-            }
-        }
-        return $news;
+       return DB::table('news')->where('category_id', $id)->get();
     }
 
 

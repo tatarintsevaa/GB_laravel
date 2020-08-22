@@ -1,12 +1,23 @@
 @extends('layouts.index')
 
+@section('title')
+    @parent{{ $news->title  }}
+@endsection
+
 @section('content')
     @if ($news)
         <div class="container">
-            <h1 class="title">
-                {{ $news['title'] }}
-            </h1>
-            <p>{{ $news['text'] }}</p>
+            @if (!$news->isPrivate)
+                <h1 class="title">
+                    {{ $news->title }}
+                </h1>
+                <img src="{{ $news->image }}" alt="image">
+                <p>{{ $news->text }}</p>
+            @else
+                <div class="alert alert-info" role="alert">
+                    Новость приватная. Зарегистрируйтесь для просмоотра
+                </div>
+            @endif
         </div>
     @else
         <div class="container">Такой новости нет</div>

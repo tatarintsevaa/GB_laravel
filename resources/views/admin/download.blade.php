@@ -1,5 +1,8 @@
 @extends('layouts.index')
 
+@section('title', 'Скачать новости')
+
+
 @section('content')
     <div class="container">
         <h3 class="title">
@@ -15,8 +18,8 @@
                     <div class="col-md-6">
                         <select class="form-control" id="FormControlSelectTitle" name="category">
                             @foreach($categories as $category)
-                                <option @if ($category['id'] == old('category')) selected @endif
-                                value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                                <option @if ($category->id == old('category')) selected @endif
+                                value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>

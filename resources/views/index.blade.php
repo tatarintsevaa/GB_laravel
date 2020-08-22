@@ -1,5 +1,7 @@
 @extends('layouts.index')
 
+@section('title', 'Главная')
+
 @section('content')
     <div class="container">
         <h3 class="title">Список ТОП новостей</h3>

@@ -25,18 +25,18 @@ Route::group([
 
 Route::group([
     'prefix' =>'news',
-    'namespace' => 'News'
+    'namespace' => 'News',
+    'as' => 'news.'
 ], function () {
-    Route::get('/', 'NewsController@index')->name('news');
-    Route::get('/{id}', 'NewsController@show')->name('newsOne');
+    Route::get('/', 'NewsController@index')->name('index');
+    Route::get('/one/{id}', 'NewsController@show')->name('show');
+    Route::group([
+        'as' => 'category.'
+    ], function() {
+        Route::get('/category', 'CategoryController@index')->name('index');
+        Route::get('/category/{name}', 'CategoryController@show')->name('show');
+    });
 });
-
-
-
-Route::get('/categories', 'CategoryController@index')->name('categories');
-Route::get('/categories/{name}', 'CategoryController@show')->name('newsByCategories');
-
-
 
 
 Auth::routes();

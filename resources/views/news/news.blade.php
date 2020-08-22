@@ -1,25 +1,66 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
 @extends('layouts.index')
+
+
+@section('title')
+    @parentНовости@isset($category) - {{ $category }}@endisset
+@endsection
 
 @section('content')
     <div class="container">
-        <h3 class="title">Новости</h3>
+        <h3 class="title">Новости @isset($category)категории {{ $category }} @endisset</h3>
         <!-- тут будем выводить топ 6 новостей из базы -->
-        <div class="row news-box">
+        <div class="row row-cols-1 row-cols-md-2">
             @forelse($news as $item)
-                <div class="col-md-4">
-                    <h2>{{ $item['title'] }}</h2>
-                    <p>{{ $item['text'] }}</p>
-                    <p>
-                        <a class="btn btn-secondary" href="{{ route('newsOne', ['id' => $item['id']]) }}" role="button">
-                            Подробнее &raquo;
-                        </a>
-                    </p>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-4">
+                                <div class="card-image">
+                                    <img src="{{ $item->image ?? 'https://via.placeholder.com/150' }}"
+                                         class="card-img img-fluid" alt="image">
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $item->title }}</h5>
+                                    <p class="card-text">{{ Str::limit($item->text, 150) }}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-footer bg-white">
+                            @if ($item->isPrivate)
+                                <a class="btn btn-secondary disabled" href="{{ route('news.show', ['id' => $item->id]) }}"
+                                   role="button" tabindex="-1" aria-disabled="true">
+                                    Подробнее &raquo;
+                                </a>
+                            @else
+                                <a class="btn btn-secondary" href="{{ route('news.show', ['id' => $item->id]) }}"
+                                   role="button">
+                                    Подробнее &raquo;
+                                </a>
+                            @endif
+                            <span class="card-links">
+                            <div>
+                              <i class="far fa-eye"></i>
+                                <small class="text-muted">0</small>
+                            </div>
+                            <div>
+                                <i class="far fa-comment-dots"></i>
+                                <small class="text-muted">0</small>
+                            </div>
+
+                        </span>
+                        </div>
+                    </div>
                 </div>
             @empty
                 <p>Новостей нет</p>
             @endforelse
         </div>
-
     </div>
 @endsection
 

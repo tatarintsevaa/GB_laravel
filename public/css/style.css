@@ -56,4 +56,28 @@
 option:hover {
   background-color: lightgray; }
 
+.news-card {
+  max-width: 40%; }
+
+.card-image {
+  padding: 1rem; }
+
+.card-footer {
+  display: flex;
+  justify-content: space-between; }
+
+.card-links {
+  display: flex;
+  align-items: center; }
+  .card-links div {
+    display: flex;
+    flex-direction: column; }
+    .card-links div .text-muted {
+      text-align: center;
+      line-height: 80%; }
+
+.card-links i {
+  color: lightgray;
+  padding: 0 0.25rem; }
+
 /*# sourceMappingURL=style.css.map */

@@ -1,12 +1,14 @@
 @extends('layouts.index')
 
+@section('title', 'Создание новости')
+
 @section('content')
     <div class="container">
         <h3 class="title">
             Добавить новость
         </h3>
         <div class="card-body">
-            <form method="POST" action="{{ route('admin.create') }}">
+            <form enctype="multipart/form-data" method="POST" action="{{ route('admin.create') }}">
                 @csrf
                 <div class="form-group row">
                     <label for="FormControlSelectTitle" class="col-md-4 col-form-label text-md-right">
@@ -15,8 +17,8 @@
                     <div class="col-md-6">
                         <select class="form-control" id="FormControlSelectTitle" name="category_id">
                             @foreach($categories as $category)
-                                <option @if ($category['id'] == old('category')) selected @endif
-                                value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                                <option @if ($category->id == old('category_id')) selected @endif
+                                value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -39,7 +41,25 @@
                                   autofocus>{{ old('text') }}</textarea>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="image" class="col-md-4 col-form-label text-md-right">
+                        Загрузить изображение
+                    </label>
+                    <div class="col-md-6">
+                        <input type="file" name="image" id="image">
+                    </div>
 
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6 offset-md-4">
+                        <div class="form-check">
+                            <input @if (old('isPrivate') === "1") checked @endif  id="newsPrivate" name="isPrivate"
+                                   type="checkbox" value="1" class="form-check-input">
+
+                            <label for="newsPrivate">Приватная</label>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group row mb-0">
                     <div class="col-md-8 offset-md-4">
                         <button type="submit" class="btn btn-dark">
