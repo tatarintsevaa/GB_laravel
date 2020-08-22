@@ -7,11 +7,13 @@
 @section('content')
     @if ($news)
         <div class="container">
+            {{ Breadcrumbs::render('one', $news) }}
             @if (!$news->isPrivate)
                 <h1 class="title">
                     {{ $news->title }}
                 </h1>
-                <img src="{{ $news->image }}" alt="image">
+                <img src="{{ $news->image ?? 'https://via.placeholder.com/300x150' }}"
+                     class="img-fluid" alt="image">
                 <p>{{ $news->text }}</p>
             @else
                 <div class="alert alert-info" role="alert">

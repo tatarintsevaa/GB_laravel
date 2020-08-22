@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container">
+        {{ Breadcrumbs::render('create') }}
         <h3 class="title">
             Добавить новость
         </h3>

@@ -10,6 +10,11 @@
 
 @section('content')
     <div class="container">
+        @isset($category)
+            {{ Breadcrumbs::render('category', $category) }}
+        @else
+            {{ Breadcrumbs::render('news') }}
+        @endisset
         <h3 class="title">Новости @isset($category)категории {{ $category }} @endisset</h3>
         <!-- тут будем выводить топ 6 новостей из базы -->
         <div class="row row-cols-1 row-cols-md-2">
