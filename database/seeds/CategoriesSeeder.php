@@ -15,19 +15,19 @@ class CategoriesSeeder extends Seeder
             [
                 [
                     'name' => 'Политика',
-                    'slug' => 'Politics',
+                    'slug' => 'politic',
                 ],
                 [
                     'name' => 'Спорт',
-                    'slug' => 'Sport',
+                    'slug' => 'sport',
                 ],
                 [
                     'name' => 'Наука',
-                    'slug' => 'Science',
+                    'slug' => 'science',
                 ],
                 [
                     'name' => 'Экономика',
-                    'slug' => 'Economic',
+                    'slug' => 'economic',
                 ]
             ]
         );

@@ -19,6 +19,4 @@ class News
     public static function getNewsByCategories($id) {
        return DB::table('news')->where('category_id', $id)->get();
     }
-
-
 }
