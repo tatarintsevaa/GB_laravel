@@ -56,7 +56,7 @@ class NewsController extends Controller
 
     public function edit() {
 
-
-        return view('admin.news.edit')->with('news', News::query()->paginate(20));
+        $news = News::query()->paginate(20);
+        return view('admin.news.edit')->with('news', $news);
     }
 }
