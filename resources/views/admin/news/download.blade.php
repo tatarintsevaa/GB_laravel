@@ -10,7 +10,7 @@
             Скачать новости по категории
         </h3>
         <div class="card-body">
-            <form method="POST" action="{{ route('admin.download') }}">
+            <form method="POST" action="{{ route('admin.news.download') }}">
                 @csrf
                 <div class="form-group row">
                     <label for="FormControlSelectTitle" class="col-md-4 col-form-label text-md-right">

@@ -5,8 +5,9 @@
         Админка
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-        <a class="dropdown-item" href="{{ route('admin.create') }}">Создать новость</a>
-        <a class="dropdown-item" href="{{ route('admin.download') }}">Скачать новости</a>
-        {{--            <div class="dropdown-divider"></div>--}}
+        <a class="dropdown-item" href="{{ route('admin.news.create') }}">Создать новость</a>
+        <a class="dropdown-item" href="{{ route('admin.news.download') }}">Скачать новости</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{{ route('admin.index') }}">Админка</a>
     </div>
 </li>

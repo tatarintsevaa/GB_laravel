@@ -38,11 +38,11 @@ Breadcrumbs::for('admin', function ($trail) {
 // Home > admin > create
 Breadcrumbs::for('create', function ($trail) {
     $trail->parent('admin');
-    $trail->push('Создание новости', route('admin.create'));
+    $trail->push('Создание новости', route('admin.news.create'));
 });
 
 // Home > admin  > download
 Breadcrumbs::for('download', function ($trail) {
     $trail->parent('admin');
-    $trail->push('Скачать новость', route('admin.download'));
+    $trail->push('Скачать новость', route('admin.news.download'));
 });

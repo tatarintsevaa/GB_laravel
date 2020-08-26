@@ -10,12 +10,13 @@ class NewsController extends Controller
 {
     public function index()
     {
-        return view('news.news')->with('news', News::getNews()) ;
+        $news = News::query()->paginate(8);
+        return view('news.news')->with('news', $news);
     }
 
-    public function show($id)
+    public function show(News $news)
     {
-        return view('news.newsOne')->with('news', News::getOneNews($id)) ;
+        return view('news.newsOne')->with('news', $news) ;
     }
 
 }

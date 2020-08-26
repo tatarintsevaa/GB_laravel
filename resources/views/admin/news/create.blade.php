@@ -9,7 +9,7 @@
             Добавить новость
         </h3>
         <div class="card-body">
-            <form enctype="multipart/form-data" method="POST" action="{{ route('admin.create') }}">
+            <form enctype="multipart/form-data" method="POST" action="{{ route('admin.news.create') }}">
                 @csrf
                 <div class="form-group row">
                     <label for="FormControlSelectTitle" class="col-md-4 col-form-label text-md-right">

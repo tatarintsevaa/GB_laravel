@@ -2,21 +2,14 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
-class News
+class News extends Model
 {
+    protected $fillable = ['title' , 'text', 'isPrivate', 'image', 'category_id'];
 
-    public static function getNews()
-    {
-        return DB::table('news')->get();
+    public function category() {
+        return $this->belongsTo(Category::class, 'category_id')->first();
     }
 
-    public static function getOneNews($id) {
-        return DB::table('news')->find($id) ?? null;
-    }
-
-    public static function getNewsByCategories($id) {
-       return DB::table('news')->where('category_id', $id)->get();
-    }
 }

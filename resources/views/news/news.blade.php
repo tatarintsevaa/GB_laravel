@@ -16,7 +16,6 @@
             {{ Breadcrumbs::render('news') }}
         @endisset
         <h3 class="title">Новости @isset($category)категории {{ $category }} @endisset</h3>
-        <!-- тут будем выводить топ 6 новостей из базы -->
         <div class="row row-cols-1 row-cols-md-2">
             @forelse($news as $item)
                 <div class="col-md-6 mb-4">
@@ -38,7 +37,8 @@
                         </div>
                         <div class="card-footer bg-white">
                             @if ($item->isPrivate)
-                                <a class="btn btn-secondary disabled" href="{{ route('news.show', ['id' => $item->id]) }}"
+                                <a class="btn btn-secondary disabled"
+                                   href="{{ route('news.show', ['id' => $item->id]) }}"
                                    role="button" tabindex="-1" aria-disabled="true">
                                     Подробнее &raquo;
                                 </a>
@@ -66,6 +66,9 @@
                 <p>Новостей нет</p>
             @endforelse
         </div>
+        <nav class="news-pagination">
+            {{ $news->onEachSide(1)->links() }}
+        </nav>
     </div>
 @endsection
 

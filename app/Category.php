@@ -3,22 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use File;
-use Illuminate\Support\Facades\DB;
 
-class Category
+class Category extends Model
 {
-    public static function getCategories() {
-        return DB::table('categories')->get();
+
+    public function news() {
+        return $this->hasMany(News::class, 'category_id');
     }
-
-    public static function getOneCategory($id) {
-        return DB::table('categories')->find($id);
-    }
-
-    public static function getCategoryIdByName(string $name) {
-        return DB::table('categories')->where('slug', $name)->value('id');
-    }
-
-
 }

@@ -80,4 +80,14 @@ option:hover {
   color: lightgray;
   padding: 0 0.25rem; }
 
+.page-link {
+  color: grey; }
+  .page-link:focus {
+    outline: none;
+    box-shadow: none; }
+
+.page-item.active .page-link {
+  background-color: grey;
+  border-color: grey; }
+
 /*# sourceMappingURL=style.css.map */
