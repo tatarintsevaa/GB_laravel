@@ -35,14 +35,41 @@ Breadcrumbs::for('admin', function ($trail) {
     $trail->push('Админка', route('admin.index'));
 });
 
-// Home > admin > create
-Breadcrumbs::for('create', function ($trail) {
+// Home > admin > news
+Breadcrumbs::for('admin.news', function ($trail) {
     $trail->parent('admin');
-    $trail->push('Создание новости', route('admin.news.create'));
+    $trail->push('Новости', route('admin.news.index'));
 });
 
-// Home > admin  > download
-Breadcrumbs::for('download', function ($trail) {
-    $trail->parent('admin');
+
+// Home > admin > news > create || edit
+Breadcrumbs::for('admin.news.create', function ($trail, $news) {
+    $trail->parent('admin.news');
+    if ($news->id) {
+        $trail->push("Редактирование новости {$news->id}", route('admin.news.edit', $news));
+    } else {
+        $trail->push('Создание новости', route('admin.news.create'));
+    }
+});
+
+// Home > admin  > news > download
+Breadcrumbs::for('admin.news.download', function ($trail) {
+    $trail->parent('admin.news');
     $trail->push('Скачать новость', route('admin.news.download'));
+});
+
+// Home > admin  > categories
+Breadcrumbs::for('admin.category', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Категории', route('admin.category.index'));
+});
+
+// Home > admin > category > create || edit
+Breadcrumbs::for('admin.category.create', function ($trail, $news) {
+    $trail->parent('admin.category');
+    if ($news->id) {
+        $trail->push("Редактирование категории {$news->id}", route('admin.category.edit', $news));
+    } else {
+        $trail->push('Создание новости', route('admin.category.create'));
+    }
 });

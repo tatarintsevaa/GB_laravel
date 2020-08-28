@@ -23,11 +23,30 @@ Route::group([
         'prefix' => 'news',
         'as' => 'news.'],
         function () {
-            Route::match(['get', 'post'], '/create', 'NewsController@create')->name('create');
+            Route::get('/', 'NewsController@index')->name('index');
+            Route::get('/create', 'NewsController@create')->name('create');
             Route::match(['get', 'post'], '/download', 'NewsController@download')->name('download');
-            Route::match(['get', 'post'], '/edit', 'NewsController@edit')->name('edit');
+            Route::get('/edit/{news}', 'NewsController@edit')->name('edit');
+            Route::put('/{news}', 'NewsController@update')->name('update');
+            Route::post('/', 'NewsController@store')->name('store');
+            Route::delete('/{news}', 'NewsController@destroy')->name('destroy');
         });
+
+//    Route::group([
+//        'prefix' => 'category',
+//        'as' => 'category.'],
+//        function () {
+//            Route::get('/', 'CategoryController@index')->name('index');
+//            Route::get('/create', 'CategoryController@create')->name('create');
+//            Route::get('/edit/{category}', 'CategoryController@edit')->name('edit');
+//            Route::put('/{category}', 'CategoryController@update')->name('update');
+//            Route::post('/', 'CategoryController@store')->name('store');
+//            Route::delete('/{category}', 'CategoryController@destroy')->name('destroy');
+//        });
+    Route::resource('/category', 'CategoryController')->except(['show']);
 });
+
+
 
 Route::group([
     'prefix' => 'news',

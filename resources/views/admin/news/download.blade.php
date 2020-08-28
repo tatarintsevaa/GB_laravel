@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="container">
-        {{ Breadcrumbs::render('download') }}
+        {{ Breadcrumbs::render('admin.news.download') }}
         <h3 class="title">
             Скачать новости по категории
         </h3>

@@ -50,9 +50,6 @@
 .dropdown-item:active {
   background-color: gray; }
 
-.form-control:focus {
-  box-shadow: none; }
-
 option:hover {
   background-color: lightgray; }
 

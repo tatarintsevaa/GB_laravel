@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index() {
-        return view('news.newsCategories');
+        return view('news.news_categories');
     }
 
     public function show(string $name) {

@@ -16,7 +16,7 @@ class NewsController extends Controller
 
     public function show(News $news)
     {
-        return view('news.newsOne')->with('news', $news) ;
+        return view('news.news_one')->with('news', $news) ;
     }
 
 }
