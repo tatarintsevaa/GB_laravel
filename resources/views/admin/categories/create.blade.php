@@ -19,18 +19,34 @@
                     <label for="name" class="col-md-4 col-form-label text-md-right">Название</label>
 
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="name" autofocus
+                        <input id="name" type="text" class="form-control @if ($errors->has('name')) is-invalid @endif" name="name" autofocus
                                value="{{ $category->name ?? old('name')}}" placeholder="Введите название категории">
+                        @if ($errors->has('name'))
+                            <div class="invalid-feedback">
+                                @foreach($errors->get('name') as $error)
+                                    {{ $error }}
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
+
                 </div>
 
                 <div class="form-group row">
                     <label for="slug" class="col-md-4 col-form-label text-md-right">Slug</label>
 
                     <div class="col-md-6">
-                        <input id="slug" type="text" class="form-control" name="slug" autofocus
+                        <input id="slug" type="text" class="form-control @if ($errors->has('slug')) is-invalid @endif" name="slug" autofocus
                                value="{{ $category->slug ?? old('slug')}}" placeholder="Введите название категории на английском">
+                        @if ($errors->has('slug'))
+                            <div class="invalid-feedback">
+                                @foreach($errors->get('slug') as $error)
+                                    {{ $error }}
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
+
                 </div>
 
                 <div class="form-group row mb-0">

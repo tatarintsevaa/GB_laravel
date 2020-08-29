@@ -55,6 +55,9 @@ class NewsController extends Controller
         if (!array_key_exists('isPrivate', $data)) {
             $data['isPrivate'] = 0;
         }
+
+        $this->validate($request, News::rules(), [], News::attrNames());
+
         $news->fill($data)->save();
 
         return redirect()->route('admin.news.index')
@@ -72,6 +75,8 @@ class NewsController extends Controller
             $filename = Storage::url($path);
         }
         $data['image'] = $filename;
+
+        $this->validate($request, News::rules(), [], News::attrNames());
 
         $news = new News();
 

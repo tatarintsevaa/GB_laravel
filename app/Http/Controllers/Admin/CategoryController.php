@@ -31,6 +31,7 @@ class CategoryController extends Controller
         $data = $request->except('_token');
 
         $category = new Category();
+        $this->validate($request, Category::rules(), [], Category::attrNames());
         $result = $category->fill($data)->save();
         if ($result) {
             return redirect()->route('admin.category.create')
@@ -51,7 +52,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $data = $request->except('_token');
-
+        $this->validate($request, Category::rules(), [], Category::attrNames());
         $result = $category->fill($data)->save();
 
         if ($result) {
@@ -66,8 +67,14 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        $category->delete();
-        return redirect()->route('admin.category.index')
-            ->with('success', 'Категория успешно удалена');
+        $news = Category::all();
+        if ($news->isEmpty()) {
+            $category->delete();
+            return redirect()->route('admin.category.index')
+                ->with('success', 'Категория успешно удалена');
+        } else {
+            return redirect()->route('admin.category.index')
+                ->with('error', "Удаление отменено. Сначала удалите все новости категории {$category->name }" );
+        }
     }
 }

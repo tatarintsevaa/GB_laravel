@@ -87,4 +87,7 @@ option:hover {
   background-color: grey;
   border-color: grey; }
 
+.invalid-feedback {
+  display: block; }
+
 /*# sourceMappingURL=style.css.map */
