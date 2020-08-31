@@ -17,15 +17,13 @@ class NewsController extends Controller
         return view('admin.news.index')->with('news', $news);
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.news.create')->with('news', new News());
     }
 
     public function download(Request $request)
     {
-
-
         if ($request->isMethod('post')) {
             $categoryId = $request->only('category')['category'];
             $categoryName = Category::query()->find($categoryId)->slug;
@@ -44,58 +42,56 @@ class NewsController extends Controller
 
     public function update(News $news, Request $request)
     {
-        $data = $request->except('_token');
+        $messages = [
+            'success' => 'Новость успешно сохранена',
+            'error' => 'Ошибка сохранения новости'
+        ];
+        return $this->saveData($news, $request, $messages);
+    }
 
+    public function store(Request $request)
+    {
+        $messages = [
+            'success' => 'Новость успешно опубликована',
+            'error' => 'Ошибка добавления новости'
+        ];
+
+        return $this->saveData(new News(), $request, $messages);
+
+    }
+
+    public function destroy(News $news)
+    {
+        $news->delete();
+        return redirect()->route('admin.news.index')
+            ->with('success', 'Новость успешно удалена');
+    }
+
+    private function saveData(News $news, Request $request, $messages)
+    {
+        $data = $request->except('_token');
         if ($request->file('image')) {
             $path = Storage::putFile('public/img', $request->file('image'));
             $filename = Storage::url($path);
             $data['image'] = $filename;
         }
 
-        if (!array_key_exists('isPrivate', $data)) {
-            $data['isPrivate'] = 0;
-        }
 
         $this->validate($request, News::rules(), [], News::attrNames());
-
-        $news->fill($data)->save();
-
-        return redirect()->route('admin.news.index')
-            ->with('success', 'Новость успешно сохранена!');
-
-
-    }
-
-    public function store(Request $request)
-    {
-        $data = $request->except('_token');
-        $filename = null;
-        if ($request->file('image')) {
-            $path = Storage::putFile('public/img', $request->file('image'));
-            $filename = Storage::url($path);
-        }
-        $data['image'] = $filename;
-
-        $this->validate($request, News::rules(), [], News::attrNames());
-
-        $news = new News();
 
         $result = $news->fill($data)->save();
 
         if ($result) {
-            return redirect()->route('admin.news.create')
-                ->with('success', 'Новость успешно добавлена');
+            if ($request->getMethod() == 'POST')
+                return redirect()->route('admin.news.create')->with('success', $messages['success']);
+            elseif ($request->getMethod() == 'PUT') {
+                return redirect()->route('admin.news.index')->with('success', $messages['success']);
+            }
         } else {
-            return redirect()->route('admin.news.create')->with('error', 'Ошибка добавления новости!');
+            $request->flash();
+            return redirect()->route('admin.news.create')->with('error', $messages['error']);
         }
     }
-
-    public function destroy(News $news) {
-        $news->delete();
-        return redirect()->route('admin.news.index')
-            ->with('success', 'Новость успешно удалена');
-    }
-
 
 
 }
