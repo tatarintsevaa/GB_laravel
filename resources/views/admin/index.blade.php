@@ -8,6 +8,7 @@
             <li class="nav-item"><a class="nav-link text-dark" href="{{ route('admin.news.create') }}">Создать новость</a></li>
             <li class="nav-item"><a class="nav-link text-dark" href="{{ route('admin.news.download') }}">Скачать новости</a></li>
             <li class="nav-item"><a class="nav-link text-dark" href="{{ route('admin.news.index') }}">Редактировать новости</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="{{ route('admin.category.index') }}">Создание / редактирование категорий</a></li>
         </ul>
     </div>
 @endsection
