@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        {{--        {{ Breadcrumbs::render('admin.category') }}--}}
+        {{ Breadcrumbs::render('admin.users') }}
         <h2 class="title">Пользователи</h2>
         <div class="news mb-4">
             <div class="row mb-4 border-bottom">

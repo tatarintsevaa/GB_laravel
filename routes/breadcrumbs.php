@@ -5,6 +5,12 @@ Breadcrumbs::for('home', function ($trail) {
     $trail->push('Главная', route('home'));
 });
 
+// Home > profile
+Breadcrumbs::for('profile', function ($trail, $user) {
+    $trail->parent('home');
+    $trail->push('Профиль', route('profile.index', $user));
+});
+
 // Home > news
 Breadcrumbs::for('news', function ($trail) {
     $trail->parent('home');
@@ -72,4 +78,9 @@ Breadcrumbs::for('admin.category.create', function ($trail, $news) {
     } else {
         $trail->push('Создание новости', route('admin.category.create'));
     }
+});
+// Home > admin  > users
+Breadcrumbs::for('admin.users', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Пользователи', route('admin.category.index'));
 });

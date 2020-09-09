@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        {{--        {{ Breadcrumbs::render('home') }}--}}
+        {{ Breadcrumbs::render('profile', $user) }}
         <h3 class="title">Профиль</h3>
         <div class="row">
             <div class="col-md-6">
@@ -75,7 +75,8 @@
                             </div>
                         @endif
                     </div>
-                    <button type="submit" class="btn btn-dark " >Изменить пароль</button></label>
+                    <button type="submit" class="btn btn-dark ">Изменить пароль</button>
+                    </label>
                 </form>
             </div>
         </div>

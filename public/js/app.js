@@ -37360,6 +37360,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }).then(function (response) {
           if (response.status === 200) {
             document.querySelector('.main').insertAdjacentHTML('afterbegin', "<div class=\"container alert alert-success alert-dismissible fade show\" role=\"alert\">\n                                    \u0421\u0442\u0430\u0442\u0443\u0441 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F \u0438\u0437\u043C\u0435\u043D\u0435\u043D!\n                                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n                                            <span aria-hidden=\"true\">&times;</span>\n                                        </button>\n                                </div>");
+            elem.removeAttribute('data-isAdmin');
+            elem.setAttribute('data-isAdmin', currentValue);
           }
         })["catch"](function (error) {
           console.log(error);

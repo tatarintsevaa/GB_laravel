@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                 </div>`)
+                            elem.removeAttribute('data-isAdmin');
+                            elem.setAttribute('data-isAdmin', currentValue);
                         }
                     })
                     .catch((error) => {

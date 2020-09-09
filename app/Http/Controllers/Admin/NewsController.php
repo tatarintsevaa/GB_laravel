@@ -19,7 +19,9 @@ class NewsController extends Controller
 
     public function create()
     {
-        return view('admin.news.create')->with('news', new News());
+        return view('admin.news.create')
+            ->with('news', new News())
+            ->with('categories', Category::all());
     }
 
     public function download(Request $request)
@@ -31,13 +33,14 @@ class NewsController extends Controller
                 ->header('Content-Disposition', "attachment; filename = {$categoryName}.json")
                 ->setEncodingOptions(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
         }
-        return view('admin.news.download');
+        return view('admin.news.download')->with('categories', Category::all());
     }
 
     public function edit(News $news)
     {
         return view('admin.news.create')
-            ->with('news', $news);
+            ->with('news', $news)
+            ->with('categories', Category::all());
     }
 
     public function update(News $news, Request $request)
