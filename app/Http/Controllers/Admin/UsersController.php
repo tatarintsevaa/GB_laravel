@@ -23,4 +23,12 @@ class UsersController extends Controller
             return response(null, Response::HTTP_BAD_REQUEST);
         }
     }
+    public function destroy(User $user) {
+        if ($user->id !== Auth::id()) {
+            $user->delete();
+            return redirect()->route('admin.users.index')->with('success', "Пользователь {$user->name} удален");
+        } else {
+            return redirect()->route('admin.users.index')->with('error', "Вы не можете удалить себя");
+        }
+    }
 }

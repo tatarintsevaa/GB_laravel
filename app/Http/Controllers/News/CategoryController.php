@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index() {
-        return view('news.news_categories');
+        return view('news.news_categories')->with('categories', Category::all());
     }
 
     public function show(string $name) {

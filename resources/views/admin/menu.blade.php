@@ -8,6 +8,7 @@
         <a class="dropdown-item" href="{{ route('admin.news.create') }}">Создать новость</a>
         <a class="dropdown-item" href="{{ route('admin.news.download') }}">Скачать новости</a>
         <a class="dropdown-item" href="{{ route('admin.news.index') }}">Редактировать новости</a>
+        <a class="dropdown-item" href="{{ route('admin.users.index') }}">Редактировать пользователей</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{ route('admin.category.index') }}">Категории</a>
         <div class="dropdown-divider"></div>
