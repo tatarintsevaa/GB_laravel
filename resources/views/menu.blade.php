@@ -26,6 +26,11 @@
         </div>
     </li>
     @if(true) {{-- что то вроде isAdmin --}}
-    @include('admin.menu')
+    @guest
+    @else
+        @if(Auth::user()->is_admin)
+            @include('admin.menu')
+        @endif
+    @endguest
     @endif
 </ul>

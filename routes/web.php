@@ -16,7 +16,8 @@ Route::get('/', 'IndexController@index')->name('home');
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
-    'as' => 'admin.'
+    'as' => 'admin.',
+    'middleware' => ['auth', 'isAdmin']
 ], function () {
     Route::get('/', 'IndexController@index')->name('index');
     Route::group([
@@ -44,9 +45,19 @@ Route::group([
 //            Route::delete('/{category}', 'CategoryController@destroy')->name('destroy');
 //        });
     Route::resource('/category', 'CategoryController')->except(['show']);
+    Route::resource('/users', 'UsersController')->only(['index', 'destroy', 'update']);
 });
 
 
+
+Route::group([
+    'prefix' => 'profile',
+    'as' => 'profile.'
+    ], function () {
+        Route::get( '/{user}', 'ProfileController@index')->name('index');
+        Route::post( '/edit', 'ProfileController@edit')->name('edit');
+        Route::post( '/editPassword', 'ProfileController@editPassword')->name('editPassword');
+});
 
 Route::group([
     'prefix' => 'news',

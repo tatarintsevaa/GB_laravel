@@ -9,7 +9,7 @@
             @if ($category->id) Редактирование категории {{ $category->id }} @else Добавить категорию @endif
         </h3>
         <div class="card-body">
-            <form enctype="multipart/form-data" method="POST"
+            <form enctype="multipart/form-data" method="post"
                   action="@if($category->id){{ route('admin.category.update', $category) }}@else{{route('admin.category.store')}}@endif">
                 @csrf
                 @if($category->id)
