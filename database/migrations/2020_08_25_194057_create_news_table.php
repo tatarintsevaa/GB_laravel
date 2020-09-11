@@ -17,7 +17,7 @@ class CreateNewsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('text');
-            $table->boolean('isPrivate')->default(false);
+            $table->boolean('is_private')->default(false);
             $table->string('image')->nullable(true);
             $table->integer('views')->default(0);
             $table->unsignedBigInteger('category_id');

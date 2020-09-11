@@ -8,7 +8,7 @@
     @if ($news)
         <div class="container">
             {{ Breadcrumbs::render('one', $news) }}
-            @if (!$news->isPrivate)
+            @if (!$news->is_private && Auth::check())
                 <h1 class="title">
                     {{ $news->title }}
                 </h1>

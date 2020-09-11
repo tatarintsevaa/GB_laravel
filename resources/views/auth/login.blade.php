@@ -11,6 +11,11 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    <div class="row p-1">
+                        <div class="col-1 mr-1"><a href="{{ route('vkLogin') }}" class="btn btn-dark"><i class="fab fa-vk"></i></a></div>
+                        <div class="col-1 mr-1"><a href="{{ route('fbLogin') }}" class="btn btn-dark"><i class="fab fa-facebook-f"></i></a></div>
+                        <div class="col-1 mr-1"><a href="{{ route('ghLogin') }}" class="btn btn-dark"><i class="fab fa-github"></i></a></div>
+                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

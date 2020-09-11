@@ -36,7 +36,7 @@
 
                         </div>
                         <div class="card-footer bg-white">
-                            @if ($item->isPrivate)
+                            @if ($item->is_private && Auth::check())
                                 <a class="btn btn-secondary disabled"
                                    href="{{ route('news.show', ['id' => $item->id]) }}"
                                    role="button" tabindex="-1" aria-disabled="true">

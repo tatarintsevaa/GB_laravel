@@ -48,8 +48,8 @@
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <img src="{{empty(Auth::user()->avatar) ? Storage::url('public/img/No-avatar.png') : Auth::user()->avatar }}" alt="photo" class="dropdown-item pb-1 img-thumbnail">
                                 <a class="dropdown-item" href="{{ route('profile.index', Auth::user()) }}">Профиль</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"

@@ -16,6 +16,6 @@ class IndexController extends Controller
         $lastListNews = DB::table('news')->orderByDesc('id')->limit(5)->get();
         return view('index')
             ->with('lastNews', $lastNews)
-            ->with('lastListNews', $lastListNews);
+            ->with('lustNewsList', $lastListNews);
     }
 }

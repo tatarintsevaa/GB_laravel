@@ -20,6 +20,7 @@ Route::group([
     'middleware' => ['auth', 'isAdmin']
 ], function () {
     Route::get('/', 'IndexController@index')->name('index');
+    Route::get('/parser', 'ParserController@index')->name('parser');
     Route::group([
         'prefix' => 'news',
         'as' => 'news.'],
@@ -48,7 +49,14 @@ Route::group([
     Route::resource('/users', 'UsersController')->only(['index', 'destroy', 'update']);
 });
 
+Route::get('/auth/vk', 'LoginController@loginVK')->name('vkLogin');
+Route::get('/auth/vk/response', 'LoginController@responseVK')->name('vkResponse');
 
+Route::get('/auth/fb', 'LoginController@loginFb')->name('fbLogin');
+Route::get('/auth/fb/response', 'LoginController@responseFb')->name('fbResponse');
+
+Route::get('/auth/gh', 'LoginController@loginGh')->name('ghLogin');
+Route::get('/auth/gh/response', 'LoginController@responseGh')->name('ghResponse');
 
 Route::group([
     'prefix' => 'profile',
