@@ -10,7 +10,7 @@
             <li class="nav-item"><a class="nav-link text-dark" href="{{ route('admin.news.index') }}">Редактировать новости</a></li>
             <li class="nav-item"><a class="nav-link text-dark" href="{{ route('admin.category.index') }}">Создание / редактирование категорий</a></li>
             <li class="nav-item"><a class="nav-link text-dark" href="{{ route('admin.users.index') }}">Редактирование пользователей</a></li>
-            <li class="nav-item"><a class="nav-link text-dark" href="{{ route('admin.parser') }}">Парсинг</a></li>
+            <li class="nav-item"><a class="nav-link btn btn-danger w-25" href="{{ route('admin.parser') }}">Парсинг</a></li>
         </ul>
     </div>
 @endsection
