@@ -29,7 +29,12 @@
     @guest
     @else
         @if(Auth::user()->is_admin)
-            @include('admin.menu')
+{{--            @include('admin.menu')--}}
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('admin.index')?'active':'' }}" href="{{ route('admin.index') }}">
+                    Админка
+                </a>
+            </li>
         @endif
     @endguest
     @endif

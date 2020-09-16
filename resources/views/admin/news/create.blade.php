@@ -23,10 +23,17 @@
                         <select class="form-control @if ($errors->has('category_id')) is-invalid @endif"
                                 id="FormControlSelectTitle" name="category_id">
                             @foreach($categories as $category)
-                                <option
-                                    @if ($category->id == old('category_id') || $news->category_id == $category->id) selected
-                                    @endif
-                                    value="{{ $category->id }}">{{ $category->name }}</option>
+                                @if (old('category_id'))
+                                    <option
+                                        @if ($category->id == old('category_id')) selected @endif
+                                    value="{{ $category->id }}">{{ $category->name }}
+                                    </option>
+                                @else
+                                    <option
+                                        @if ($category->id == $news->category_id) selected @endif
+                                    value="{{ $category->id }}">{{ $category->name }}
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                         @if ($errors->has('category_id'))
@@ -45,7 +52,7 @@
                     <div class="col-md-6">
                         <input id="title" type="text" class="form-control @if ($errors->has('title')) is-invalid @endif"
                                name="title" autofocus
-                               value="{{ $news->title ?? old('title')}}">
+                               value="{{ old('title') ?? $news->title }}">
                         @if ($errors->has('title'))
                             <div class="invalid-feedback">
                                 @foreach($errors->get('title') as $error)
@@ -63,7 +70,7 @@
                     <div class="col-md-6">
                         <textarea id="text" class="form-control @if ($errors->has('text')) is-invalid @endif"
                                   name="text" rows="3"
-                                  autofocus>{{$news->text ?? old('text')}} </textarea>
+                                  autofocus>{{ old('text') ?? $news->text }} </textarea>
                         @if ($errors->has('text'))
                             <div class="invalid-feedback">
                                 @foreach($errors->get('text') as $error)
@@ -115,7 +122,8 @@
                 </div>
                 <div class="form-group row mb-0">
                     <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-dark">@if($news->id)Сохранить@elseОпубликовать@endif</button>
+                        <button type="submit" class="btn btn-dark">@if($news->id)Сохранить@else
+                                Опубликовать@endif</button>
                     </div>
                 </div>
             </form>
