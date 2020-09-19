@@ -84,3 +84,18 @@ Breadcrumbs::for('admin.users', function ($trail) {
     $trail->parent('admin');
     $trail->push('Пользователи', route('admin.category.index'));
 });
+// Home > admin  > resource
+Breadcrumbs::for('admin.resource', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Ресурсы', route('admin.resource.index'));
+});
+
+// Home > admin > resource > create || edit
+Breadcrumbs::for('admin.resource.create', function ($trail, $resource) {
+    $trail->parent('admin.resource');
+    if ($resource->id) {
+        $trail->push("Редактирование ресурса {$resource->id}", route('admin.resource.edit', $resource));
+    } else {
+        $trail->push('Создание ресурса', route('admin.resource.create'));
+    }
+});

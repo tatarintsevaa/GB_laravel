@@ -21,18 +21,9 @@ class CategoryController extends Controller
         return view('admin.categories.create')->with('category', new Category());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function store(Request $request)
     {
-        $messages = [
-            'success' => 'Категория успешно добавлена',
-            'error' => 'Ошибка добавления категории!'
-        ];
         $result = $this->saveData($request, new Category());
         if ($result) {
             return redirect()->route('admin.category.create')
@@ -53,10 +44,6 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $messages = [
-            'success' => 'Категория успешно изменена',
-            'error' => 'Ошибка изменения категории!'
-        ];
 
         $result = $this->saveData($request, $category);
         if ($result) {

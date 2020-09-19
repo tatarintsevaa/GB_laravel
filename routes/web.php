@@ -13,6 +13,11 @@
 
 Route::get('/', 'IndexController@index')->name('home');
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'isAdmin', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
@@ -25,6 +30,7 @@ Route::group([
         'prefix' => 'news',
         'as' => 'news.'],
         function () {
+
             Route::get('/', 'NewsController@index')->name('index');
             Route::get('/create', 'NewsController@create')->name('create');
             Route::match(['get', 'post'], '/download', 'NewsController@download')->name('download');
@@ -47,6 +53,7 @@ Route::group([
 //        });
     Route::resource('/category', 'CategoryController')->except(['show']);
     Route::resource('/users', 'UsersController')->only(['index', 'destroy', 'update']);
+    Route::resource('/resource', 'ResourceController')->except(['show']);
 });
 
 Route::get('/auth/vk', 'LoginController@loginVK')->name('vkLogin');
@@ -57,6 +64,8 @@ Route::get('/auth/fb/response', 'LoginController@responseFb')->name('fbResponse'
 
 Route::get('/auth/gh', 'LoginController@loginGh')->name('ghLogin');
 Route::get('/auth/gh/response', 'LoginController@responseGh')->name('ghResponse');
+
+
 
 Route::group([
     'prefix' => 'profile',
@@ -74,6 +83,7 @@ Route::group([
 ], function () {
     Route::get('/', 'NewsController@index')->name('index');
     Route::get('/one/{news}', 'NewsController@show')->name('show');
+    Route::get('/search', 'NewsController@search')->name('search');
     Route::group([
         'as' => 'category.'
     ], function () {

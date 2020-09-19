@@ -17,6 +17,7 @@
         @endisset
         <h3 class="title">Новости @isset($category)категории {{ $category }} @endisset</h3>
         <div class="row row-cols-1 row-cols-md-2">
+{{--TODO вывести sidebar с настройками отображения новостей по категориям и датам--}}
             @forelse($news as $item)
                 <div class="col-md-6 mb-4">
                     <div class="card">
@@ -29,14 +30,14 @@
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $item->title }}</h5>
+                                    <h5 class="card-title">{{ Str::limit($item->title, 50)}}</h5>
                                     <p class="card-text">{{ Str::limit($item->text, 150) }}</p>
                                 </div>
                             </div>
 
                         </div>
                         <div class="card-footer bg-white">
-                            @if ($item->is_private && Auth::check())
+                            @if ($item->is_private && !Auth::check())
                                 <a class="btn btn-secondary disabled"
                                    href="{{ route('news.show', ['id' => $item->id]) }}"
                                    role="button" tabindex="-1" aria-disabled="true">

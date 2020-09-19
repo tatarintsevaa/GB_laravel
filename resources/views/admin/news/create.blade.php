@@ -16,10 +16,10 @@
                     @method('PUT')
                 @endif
                 <div class="form-group row">
-                    <label for="FormControlSelectTitle" class="col-md-4 col-form-label text-md-right">
+                    <label for="FormControlSelectTitle" class="col-md-3 col-form-label text-md-right">
                         Выбор категории
                     </label>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <select class="form-control @if ($errors->has('category_id')) is-invalid @endif"
                                 id="FormControlSelectTitle" name="category_id">
                             @foreach($categories as $category)
@@ -47,9 +47,9 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="title" class="col-md-4 col-form-label text-md-right">Заголовок</label>
+                    <label for="title" class="col-md-3 col-form-label text-md-right">Заголовок</label>
 
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <input id="title" type="text" class="form-control @if ($errors->has('title')) is-invalid @endif"
                                name="title" autofocus
                                value="{{ old('title') ?? $news->title }}">
@@ -65,12 +65,12 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="text" class="col-md-4 col-form-label text-md-right">Текст</label>
+                    <label for="text" class="col-md-3 col-form-label text-md-right">Текст</label>
 
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <textarea id="text" class="form-control @if ($errors->has('text')) is-invalid @endif"
                                   name="text" rows="3"
-                                  autofocus>{{ old('text') ?? $news->text }} </textarea>
+                                  autofocus>{!! old('text') ?? $news->text !!} </textarea>
                         @if ($errors->has('text'))
                             <div class="invalid-feedback">
                                 @foreach($errors->get('text') as $error)
@@ -82,10 +82,10 @@
 
                 </div>
                 <div class="form-group row">
-                    <label for="customFile" class="col-md-4 col-form-label text-md-right">
+                    <label for="customFile" class="col-md-3 col-form-label text-md-right">
                         Загрузить изображение
                     </label>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <div class="custom-file">
                             <input type="file" name="image" class="custom-file-input" id="customFile">
                             <label class="custom-file-label @if ($errors->has('image')) is-invalid @endif"
@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-6 offset-md-4">
+                    <div class="col-md-7 offset-md-3">
                         <div class="form-check">
                             <input @if (old('isPrivate') === "1" || $news->isPrivate == 1) checked
                                    @endif  id="newsPrivate" name="isPrivate"
@@ -121,7 +121,7 @@
 
                 </div>
                 <div class="form-group row mb-0">
-                    <div class="col-md-8 offset-md-4">
+                    <div class="col-md-7 offset-md-3">
                         <button type="submit" class="btn btn-dark">@if($news->id)Сохранить@else
                                 Опубликовать@endif</button>
                     </div>
@@ -129,4 +129,16 @@
             </form>
         </div>
     </div>
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <script>
+        const options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+    </script>
+    <script>
+        CKEDITOR.replace('text', options);
+    </script>
 @endsection

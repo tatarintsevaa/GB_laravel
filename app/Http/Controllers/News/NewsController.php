@@ -19,4 +19,12 @@ class NewsController extends Controller
         return view('news.news_one')->with('news', $news) ;
     }
 
+    public function search(Request $request)
+    {
+        $data = $request->except('_token');
+        $news = News::query()->where('text', 'Like', '%' . $data['search'] . '%')->paginate();
+//        dd($news);
+
+        return view('news.news')->with('news', $news);
+    }
 }

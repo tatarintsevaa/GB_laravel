@@ -27,8 +27,9 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 @include('menu')
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0" action="{{ route('news.search') }}">
+                    @csrf
+                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Поиск" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
                 <ul class="navbar-nav ml-auto">
@@ -49,7 +50,7 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <img src="{{empty(Auth::user()->avatar) ? Storage::url('public/img/No-avatar.png') : Auth::user()->avatar }}" alt="photo" class="dropdown-item pb-1 img-thumbnail">
+                                <img src="{{empty(Auth::user()->avatar) ? Storage::url('public/img/No-avatar.png') : Auth::user()->avatar }}" alt="photo" class="dropdown-item pb-1 img-thumbnail avatar">
                                 <a class="dropdown-item" href="{{ route('profile.index', Auth::user()) }}">Профиль</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
