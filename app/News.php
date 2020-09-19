@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Rules\Ember;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
@@ -12,6 +11,10 @@ class News extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id')->first();
+    }
+
+    public function views() {
+        return $this->hasMany(View::class, 'news_id');
     }
 
     public static function rules()

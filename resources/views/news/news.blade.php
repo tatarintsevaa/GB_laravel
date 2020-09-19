@@ -52,7 +52,7 @@
                             <span class="card-links">
                             <div>
                               <i class="far fa-eye"></i>
-                                <small class="text-muted">0</small>
+                                <small class="text-muted">{{ $item->views()->count() }}</small>
                             </div>
                             <div>
                                 <i class="far fa-comment-dots"></i>
