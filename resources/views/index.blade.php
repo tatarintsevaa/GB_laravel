@@ -15,14 +15,15 @@
                 <div class="col-12 justify-content-center">Новостей нет</div>
             @else
                 <div class="col-md-8">
-                    <div class="card bg-white text-dark">
-                        <img src="{{ $lastNews->image ?? 'https://via.placeholder.com/500x300' }}"
-                             class="card-img" alt="image">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">{{ $lastNews->title }}</h5>
-                            <p class="card-text">{{ Str::limit($lastNews->text, 100) }}</p>
+                    <a href="{{ route('news.show', ['id' => $lastNews->id])  }}" class="last-news">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $lastNews->title }}</h5>
+                                <p class="card-text">{{ Str::limit($lastNews->text, 200) }}</p>
+                            </div>
+                            <img src="{{ $lastNews->image ?? 'https://via.placeholder.com/500x300' }}" class="card-img-bottom" alt="photo">
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-4">
                     @forelse($lustNewsList as $item)

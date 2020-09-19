@@ -98,4 +98,15 @@ option:hover {
 .avatar {
   max-width: 200px; }
 
+.card {
+  transition: all 0.2s; }
+
+.last-news {
+  color: inherit; }
+  .last-news:hover .card {
+    border-color: #1b1e21 !important; }
+  .last-news:hover {
+    text-decoration: none;
+    color: inherit; }
+
 /*# sourceMappingURL=style.css.map */

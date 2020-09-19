@@ -58,7 +58,6 @@
                                 <i class="far fa-comment-dots"></i>
                                 <small class="text-muted">0</small>
                             </div>
-
                         </span>
                         </div>
                     </div>
