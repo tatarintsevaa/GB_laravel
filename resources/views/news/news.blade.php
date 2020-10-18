@@ -56,7 +56,7 @@
                             </div>
                             <div>
                                 <i class="far fa-comment-dots"></i>
-                                <small class="text-muted">0</small>
+                                <small class="text-muted">{{ $item->comments()->count() }}</small>
                             </div>
                         </span>
                         </div>

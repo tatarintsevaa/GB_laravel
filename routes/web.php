@@ -26,6 +26,7 @@ Route::group([
 ], function () {
     Route::get('/', 'IndexController@index')->name('index');
     Route::get('/parser', 'ParserController@index')->name('parser');
+    Route::put('/user/{id}/update', 'UsersController@update')->name('user.update');
     Route::group([
         'prefix' => 'news',
         'as' => 'news.'],
@@ -91,6 +92,10 @@ Route::group([
         Route::get('/category/{name}', 'CategoryController@show')->name('show');
     });
 });
+
+
+
+Route::put('/comment', 'CommentController@store')->name('comment.store');
 
 
 Auth::routes();

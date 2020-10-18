@@ -17,6 +17,10 @@ class News extends Model
         return $this->hasMany(View::class, 'news_id');
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class, 'news_id');
+    }
+
     public static function rules()
     {
         $tableNameCategory = (new Category())->getTable();

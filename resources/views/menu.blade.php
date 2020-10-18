@@ -16,7 +16,7 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('news.category.index') }}">Категории новостей</a>
             <div class="dropdown-divider"></div>
-        @forelse(\App\Category::all() as $category)
+            @forelse(\App\Category::all() as $category)
                 <a class="dropdown-item " href="{{ route('news.category.show', ['name' => $category->slug]) }}">
                     {{ $category->name }}
                 </a>
@@ -30,9 +30,10 @@
     @guest
     @else
         @if(Auth::user()->is_admin)
-{{--            @include('admin.menu')--}}
+            {{--            @include('admin.menu')--}}
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.index')?'active':'' }}" href="{{ route('admin.index') }}">
+                <a class="nav-link {{ request()->routeIs('admin.index')?'active':'' }}"
+                   href="{{ route('admin.index') }}">
                     Админка
                 </a>
             </li>

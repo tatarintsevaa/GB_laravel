@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::put('/admin/user/{id}/update', 'Admin\UsersController@update')->name('admin.user.update');
+
 

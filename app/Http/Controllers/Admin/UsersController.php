@@ -17,7 +17,7 @@ class UsersController extends Controller
         $user = User::find($id);
         if ($user->id !== Auth::id()) {
             $user->is_admin = $request->value;
-            $user->save();
+            $result = $user->save();
             return response(null, Response::HTTP_OK);
         } else {
             return response(null, Response::HTTP_BAD_REQUEST);

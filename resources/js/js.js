@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const currentValue = elem.querySelector('.is-admin').value;
             const id = elem.getAttribute('data-id');
             if (currentValue !== elem.getAttribute('data-isAdmin')) {
-                axios.put(`/api/admin/user/${id}/update`, {
+                axios.put(`/admin/user/${id}/update`, {
                     value: currentValue
                 })
                     .then((response) => {

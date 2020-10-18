@@ -19,7 +19,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $lastNews->title }}</h5>
-                                <p class="card-text">{{ Str::limit($lastNews->text, 200) }}</p>
+                                <p class="card-text">{!! Str::limit($lastNews->text, 200) !!}</p>
                             </div>
                             <img src="{{ $lastNews->image ?? 'https://via.placeholder.com/500x300' }}" class="card-img-bottom" alt="photo">
                         </div>
@@ -28,7 +28,7 @@
                 <div class="col-md-4">
                     @forelse($lustNewsList as $item)
                         <h2>{{ $item->title }}</h2>
-                        <p>{{ Str::limit($item->text, 150) }}</p>
+                        <p>{!! Str::limit($item->text, 150) !!}</p>
                         <p>
                             @if ($item->is_private)
                                 <a class="btn btn-secondary disabled" href="{{ route('news.show', ['id' => $item->id]) }}"

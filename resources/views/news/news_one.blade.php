@@ -13,9 +13,9 @@
                     {{ $news->title }}
                 </h1>
                 <img src="{{ $news->image ?? 'https://via.placeholder.com/300x150' }}"
-                     class="img-fluid" alt="image">
+                     class="img-fluid mb-2" alt="image">
                 <p>{!! $news->text !!}</p>
-                <div class="card">
+                <div class="card mb-2">
                     <div class="card-header">
                         Комментарии
                     </div>
@@ -23,10 +23,56 @@
                         <div class="card-text">
                             <div class="row">
                                 <p class="col-2"><strong>Имя</strong></p>
-                                <p class="col-10">Коммент</p>
+                                <p class="col-9">Комментарий</p>
+                            </div>
+                            <div class="comments-list">
+                                @forelse($comments as $comment)
+                                    <div class="row comment-item">
+                                        <p class="col-2"><strong>{{ $comment['name'] }}</strong></p>
+                                        <p class="col-10">{{ $comment['comment'] }}</p>
+                                        <p class="col-12">
+                                            <a href="#" data-comment-id="{{ $comment['id'] }}"
+                                               class="reply-btn">ответить
+                                            </a>
+                                        </p>
+                                    </div>
+                                    @isset($comment['children'])
+                                        @include('comments.comments', ['child' => $comment['children']])
+                                    @endisset
+                                @empty
+                                    <div class="no-comments">
+                                        Комментариев пока нет
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
-
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        Напсиать комментарий
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="name">Имя</label>
+                                        <input type="text" class="form-control" id="name" name="name">
+                                        <div id="name-feedback" class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">Текст комментария</label>
+                                    <textarea class="form-control" id="comment"
+                                              placeholder="Напишите ваш комментарий"></textarea>
+                                    <div id="comment-feedback" class="invalid-feedback"></div>
+                                </div>
+                                <button data-news-id="{{ $news->id }}" type="button" class="btn btn-dark"
+                                        id="send-comment">Отправить
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             @else

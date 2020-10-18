@@ -11,11 +11,6 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <div class="row p-1">
-                        <div class="col-1 mr-1"><a href="{{ route('vkLogin') }}" class="btn btn-dark"><i class="fab fa-vk"></i></a></div>
-                        <div class="col-1 mr-1"><a href="{{ route('fbLogin') }}" class="btn btn-dark"><i class="fab fa-facebook-f"></i></a></div>
-                        <div class="col-1 mr-1"><a href="{{ route('ghLogin') }}" class="btn btn-dark"><i class="fab fa-github"></i></a></div>
-                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -73,6 +68,16 @@
                             </div>
                         </div>
                     </form>
+                    <div class="row p-1 mt-2">
+                        <div class="col-md-4 text-right">
+                            Вход через соц. сети
+                        </div>
+                        <div class="row col-md-6">
+                            <div class="col-1 mr-1 mr-3"><a href="{{ route('vkLogin') }}" class="btn btn-dark btn-sm"><i class="fab fa-vk"></i></a></div>
+                            {{--                        <div class="col-1 mr-1"><a href="{{ route('fbLogin') }}" class="btn btn-dark"><i class="fab fa-facebook-f"></i></a></div>--}}
+                            <div class="col-1 mr-1"><a href="{{ route('ghLogin') }}" class="btn btn-dark btn-sm"><i class="fab fa-github"></i></a></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
