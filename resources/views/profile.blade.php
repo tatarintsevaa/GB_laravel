@@ -79,6 +79,32 @@
                     </label>
                 </form>
             </div>
+            <div class="col-md-6 mt-2">
+                <form enctype="multipart/form-data" action="{{ route('profile.addAvatar') }}" method="post">
+                    @csrf
+                    <div class="form-group row">
+                        <label for="customFile" class="col-lg-4 col-form-label text-lg-right">
+                            Загрузить аватар
+                        </label>
+                        <div class="col-lg-8">
+                            <div class="custom-file">
+                                <input type="file" name="avatar" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label @if ($errors->has('avatar')) is-invalid @endif"
+                                       for="customFile" data-browse="Обзор">Выберите файл</label>
+                            </div>
+                            @if ($errors->has('avatar'))
+                                <div class="invalid-feedback">
+                                    @foreach($errors->get('avatar') as $error)
+                                        {{ $error }}
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark ">Сохранить изменения
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

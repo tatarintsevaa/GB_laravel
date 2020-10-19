@@ -75,6 +75,7 @@ Route::group([
         Route::get( '/{user}', 'ProfileController@index')->name('index');
         Route::post( '/edit', 'ProfileController@edit')->name('edit');
         Route::post( '/editPassword', 'ProfileController@editPassword')->name('editPassword');
+        Route::post( '/addAvatar', 'ProfileController@addAvatar')->name('addAvatar');
 });
 
 Route::group([

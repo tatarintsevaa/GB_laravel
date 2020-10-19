@@ -114,4 +114,12 @@ option:hover {
   border-left: 1px solid lightgray;
   margin-bottom: 1rem; }
 
+.close-btn {
+  padding: 0.35rem !important; }
+
+.card-header-reply-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
 /*# sourceMappingURL=style.css.map */
