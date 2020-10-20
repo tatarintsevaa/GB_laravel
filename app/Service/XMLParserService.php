@@ -56,36 +56,12 @@ class XMLParserService
                     'title' => $item['title'],
                     'text' => $item['description'],
                     'image' => $item['enclosure::url'],
-                    'category_id' => $categoryId
+                    'category_id' => $categoryId,
+                    'link' => $item['link']
                 ]);
                 $newsCollect->add($item['title']);
             }
         }
         News::query()->insert($newNewsData->toArray());
-
-//        dd(News::all());
-//        foreach ($data['news'] as $item) { //  переделать метод . Использовать минимум запросов. сначала дернуть все категории и впроверять в пхп.
-//            $category = Category::query()->where('name', $item['category'])->first();
-//            if (is_null($category)) {
-//                $category = new Category();
-//                $category->fill([
-//                    'name' => $item['category'],
-//                    'slug' => Str::slug($item['category'])
-//                ]);
-//                $category->save();
-//            }
-//            $news = News::query()->where('title', $item['title'])->first();
-//            if (is_null($news)) {
-//                $news = new News();
-//                $news->fill([
-//                    'title' => $item['title'],
-//                    'text' => $item['description'],
-//                    'image' => $item['enclosure::url'],
-//                    'category_id' => $category->id
-//                ]);
-//                $news->save();
-//            }
-//
-//        }
     }
 }

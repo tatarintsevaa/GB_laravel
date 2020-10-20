@@ -12,9 +12,14 @@
                 <h1 class="title">
                     {{ $news->title }}
                 </h1>
-                <img src="{{ $news->image ?? 'https://via.placeholder.com/300x150' }}"
-                     class="img-fluid mb-2" alt="image">
-                <p>{!! $news->text !!}</p>
+                @if ( $news->image )
+                    <div class="img-fluid">
+                        <img src="{{ $news->image }}" class="img-fluid mb-2" alt="image">
+                    </div>
+                @endif
+                <p class="mb-2">{!! $news->text !!}</p>
+                <p class="mb-2">Подробности в <a href="{{ $news->link }}">источнике</a>.</p>
+
                 <div class="card mb-2">
                     <div class="card-header">
                         Комментарии
@@ -101,9 +106,6 @@
                                             <p class="col-9">${data.comment}</p>
                                             <p class="col-1">
                                             <p class="col-12">
-                                            <a data-toggle="collapse" href="#reply-input-group" data-comment-id="${data.id}"
-                                                    class="reply-btn">ответить
-                                            </a>
                                         </p>
                                         </p>`;
             return commentElement;
@@ -129,10 +131,6 @@
                         noCommentsElem.remove();
                     }
                     insertComment(commentElement, commentsList);
-                    commentElement.querySelector('.reply-btn').addEventListener('click', (evt) => {
-                        evt.preventDefault();
-                        openInputGroup(evt, commentElement);
-                    })
                     setTimeout(() => {
                         setDefaultBtn(sendCommentBtn);
                         document.getElementById('name-feedback').innerHTML = '';
@@ -185,11 +183,8 @@
                 parent_id: parentId
             })
                 .then((response) => {
+                    elem.previousElementSibling.querySelector('.reply-btn').classList.remove('invisible');
                     const commentElement = createCommentElement(response.data);
-                    commentElement.querySelector('.reply-btn').addEventListener('click', (evt) => {
-                        evt.preventDefault();
-                        openInputGroup(evt, commentElement);
-                    })
                     if (elem.nextElementSibling !== null && elem.nextElementSibling.classList.contains('children')) {
                         elem.nextElementSibling.insertAdjacentElement('beforeend', commentElement);
                         destroyCollapseElement('#reply-input', elem);
@@ -203,12 +198,15 @@
 
                 })
                 .catch(error => {
-                    if (error.response.status === 422) {
+                    if (error.response && error.response.status === 422) {
                         const nameError = error.response.data.errors.name;
                         const commentError = error.response.data.errors.comment;
                         setDefaultBtn(sendCommentReplyBtn);
                         toggleErrorMessage(nameReply, nameError);
                         toggleErrorMessage(commentReply, commentError);
+
+                    } else {
+                        console.log(error);
                     }
                 });
         }
@@ -267,14 +265,14 @@
         }
 
 
-        function openInputGroup(event, elem) {
+        function openInputGroup(event, commentItemElement) {
             const parentId = event.target.dataset.commentId;
             const inputGroupElement = createInputGroupElement(parentId);
             inputGroupElement.querySelector('.close-btn').addEventListener('click', () => {
                 destroyCollapseElement('#reply-input');
-                elem.querySelector('.reply-btn').classList.remove('invisible');
+                commentItemElement.querySelector('.reply-btn').classList.remove('invisible');
             });
-            elem.insertAdjacentElement('afterend', inputGroupElement);
+            commentItemElement.insertAdjacentElement('afterend', inputGroupElement);
             showCollapseElement('#reply-input');
         }
 
@@ -288,5 +286,6 @@
             });
         })
     })
+
 
 </script>

@@ -20,7 +20,7 @@ class NewsController extends Controller
 
     public function show(News $news, BuildThreeService $buildThreeService)
     {
-        // TODO Сделать по SOLID
+
         $sessionId = Auth::getSession()->getId();
         if (!$news->views()->pluck('session_id')->contains($sessionId)) {
             $view = new View();
