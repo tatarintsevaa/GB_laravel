@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function insertComment(element, wrapper) {
         wrapper.insertAdjacentElement('beforeend', element);
-        name.value = '';
         comment.value = '';
     }
 
@@ -134,7 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="name-reply">Имя</label>
-                                        <input id="name-reply" type="text" class="form-control name" name="name">
+                                        <input id="name-reply" type="text" value="${name.value}"
+                                        placeholder="Ваше имя" class="form-control name" name="name">
                                         <div id="name-feedback-reply" class="invalid-feedback"></div>
                                     </div>
                                 </div>

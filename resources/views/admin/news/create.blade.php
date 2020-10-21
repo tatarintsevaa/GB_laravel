@@ -103,15 +103,15 @@
                 <div class="form-group row">
                     <div class="col-md-7 offset-md-3">
                         <div class="form-check">
-                            <input @if (old('isPrivate') === "1" || $news->isPrivate == 1) checked
-                                   @endif  id="newsPrivate" name="isPrivate"
+                            <input @if (old('is_private') === "1" || $news->isPrivate == 1) checked
+                                   @endif  id="newsPrivate" name="is_private"
                                    type="checkbox" value="1"
-                                   class="form-check-input @if ($errors->has('isPrivate')) is-invalid @endif">
+                                   class="form-check-input @if ($errors->has('is_private')) is-invalid @endif">
 
                             <label for="newsPrivate">Приватная</label>
-                            @if ($errors->has('isPrivate'))
+                            @if ($errors->has('is_private'))
                                 <div class="invalid-feedback">
-                                    @foreach($errors->get('isPrivate') as $error)
+                                    @foreach($errors->get('is_private') as $error)
                                         {{ $error }}
                                     @endforeach
                                 </div>

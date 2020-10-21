@@ -66,7 +66,7 @@
                                         <input type="text" class="form-control" id="name"  name="name"
                                          @if(\Illuminate\Support\Facades\Auth::check())
                                             value="{{ \Illuminate\Support\Facades\Auth::user()->name }}"
-                                         @endif>
+                                         @endif placeholder="Ваше имя">
                                         <div id="name-feedback" class="invalid-feedback"></div>
                                     </div>
                                 </div>

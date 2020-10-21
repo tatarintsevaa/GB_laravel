@@ -31,15 +31,15 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ Str::limit($item->title, 50)}}</h5>
-                                        <p class="card-text">{{ Str::limit($item->text, 150) }}</p>
+                                        <h5 class="card-title">{!! Str::limit($item->title, 50) !!}</h5>
+                                        <p class="card-text">{!! Str::limit($item->text, 150) !!}</p>
                                     </div>
                                 </div>
                             @else
                                 <div class="col-12">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ Str::limit($item->title, 50)}}</h5>
-                                        <p class="card-text">{{ Str::limit($item->text, 200) }}</p>
+                                        <h5 class="card-title">{!! Str::limit($item->title, 50)!!}</h5>
+                                        <p class="card-text">{!! Str::limit($item->text, 200) !!}</p>
                                     </div>
                                 </div>
                             @endif
