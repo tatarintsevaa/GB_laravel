@@ -112,7 +112,9 @@ option:hover
 
 .card
     transition: all 0.2s
-
+    overflow: hidden
+.card-img-bottom
+    transition: all 0.2s
 .last-news
     color: inherit
 
@@ -122,6 +124,8 @@ option:hover
     &:hover
         text-decoration: none
         color: inherit
+    &:hover .card-img-bottom
+        transform: scale(1.05)
 
 
 

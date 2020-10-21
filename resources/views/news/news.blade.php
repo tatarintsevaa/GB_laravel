@@ -17,24 +17,32 @@
         @endisset
         <h3 class="title">Новости @isset($category)категории {{ $category }} @endisset</h3>
         <div class="row row-cols-1 row-cols-md-2">
-{{--TODO вывести sidebar с настройками отображения новостей по категориям и датам--}}
+            {{--TODO вывести sidebar с настройками отображения новостей по категориям и датам--}}
             @forelse($news as $item)
                 <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="row no-gutters">
-                            <div class="col-4">
-                                <div class="card-image">
-                                    <img src="{{ $item->image ?? 'https://via.placeholder.com/150' }}"
-                                         class="card-img img-fluid" alt="image">
+                            @if ($item->image)
+                                <div class="col-4">
+                                    <div class="card-image">
+                                        <img src="{{ $item->image ?? 'https://via.placeholder.com/150' }}"
+                                             class="card-img img-fluid" alt="image">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ Str::limit($item->title, 50)}}</h5>
-                                    <p class="card-text">{{ Str::limit($item->text, 150) }}</p>
+                                <div class="col-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ Str::limit($item->title, 50)}}</h5>
+                                        <p class="card-text">{{ Str::limit($item->text, 150) }}</p>
+                                    </div>
                                 </div>
-                            </div>
-
+                            @else
+                                <div class="col-12">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ Str::limit($item->title, 50)}}</h5>
+                                        <p class="card-text">{{ Str::limit($item->text, 200) }}</p>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="card-footer bg-white">
                             @if ($item->is_private && !Auth::check())

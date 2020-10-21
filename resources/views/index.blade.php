@@ -8,13 +8,13 @@
 @section('content')
     <div class="container">
         {{ Breadcrumbs::render('home') }}
-        <h3 class="title">Список ТОП новостей</h3>
+        <h3 class="title">Последние новости</h3>
         <!-- тут будем выводить свежие  новостей из базы -->
         <div class="row news-box">
             @empty($lastNews)
                 <div class="col-12 justify-content-center">Новостей нет</div>
             @else
-                <div class="col-md-8">
+                <div class="col-md-8 mb-2">
                     <a href="{{ route('news.show', ['id' => $lastNews->id])  }}" class="last-news">
                         <div class="card">
                             <div class="card-body">

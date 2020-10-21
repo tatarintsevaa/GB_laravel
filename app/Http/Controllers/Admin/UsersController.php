@@ -15,7 +15,7 @@ class UsersController extends Controller
     }
     public function update($id, Request $request) {
         $user = User::find($id);
-        if ($user->id !== Auth::id()) {
+        if ($user->id !== Auth::id() && $user->id !== 1) {
             $user->is_admin = $request->value;
             $result = $user->save();
             return response(null, Response::HTTP_OK);
@@ -24,9 +24,11 @@ class UsersController extends Controller
         }
     }
     public function destroy(User $user) {
-        if ($user->id !== Auth::id()) {
+        if ($user->id !== Auth::id() && $user->id !== 1) {
             $user->delete();
             return redirect()->route('admin.users.index')->with('success', "Пользователь {$user->name} удален");
+        } elseif ($user->id === 1) {
+            return redirect()->route('admin.users.index')->with('error', "Вы не можете удалить Админа");
         } else {
             return redirect()->route('admin.users.index')->with('error', "Вы не можете удалить себя");
         }

@@ -18,7 +18,7 @@ class CreateViewsTable extends Migration
             $table->bigInteger('news_id')->unsigned();
             $table->string('session_id', 255);
             $table->timestamps();
-            $table->foreign('news_id')->references('id')->on('news');
+            $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade');
         });
     }
 

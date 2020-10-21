@@ -13,13 +13,12 @@
     <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
     <script src="{{ URL::asset('js/app.js') }}" defer ></script>
-
 </head>
 <body>
 <div class="page">
     <div class="header">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{ route('home') }}">AllNews</a>
+            <a class="navbar-brand" href="{{ route('home') }}">News</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -96,12 +95,12 @@
     <div class="footer">
         <div class="container footer__box">
             <div class="footer__text">
-                &copy; 2020 ALLNews All Rights Reserved.
+                &copy; 2020 Проект создан исключительно в образовательных целях студентом GeekBrains.
             </div>
             <div class="footer__social">
-                <a href="#"><i class="fab fa-vk"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://vk.com/id1956990" target="_blank"><i class="fab fa-vk"></i></a>
+{{--                <a href="#" ><i class="fab fa-facebook"></i></a>--}}
+{{--                <a href="#" ><i class="fab fa-instagram"></i></a>--}}
             </div>
         </div>
     </div>

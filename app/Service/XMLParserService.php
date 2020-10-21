@@ -11,6 +11,32 @@ use Orchestra\Parser\Xml\Facade as XmlParser;
 
 class XMLParserService
 {
+    private $categories = [
+        'Главное' => ['главное', 'Главное'],
+        'Авто' => ['авто', 'автоспорт'],
+        'Силовые структуры' => ['силовые структуры', 'армия', 'оружие'],
+        'ИТ новости' => ['гаджеты', 'интернет', 'игры', 'киберспорт', 'ит'],
+        'Медицина' => ['медицина', 'здоровье', 'игры', 'киберспорт'],
+        'Спорт' => ['спорт', 'единоборства', 'лига чемпионов', 'нхл'],
+        'Наука' => ['космос', 'техника', 'лига чемпионов', 'нхл'],
+        'Культура' => ['культура', 'кино', 'лига чемпионов', 'нхл'],
+        'Музыка' => ['музыка'],
+        'ЖКХ' => ['жкх'],
+    ];
+
+    private function categoriesFilter(string $category): string
+    {
+
+        foreach ($this->categories as $name => $values) {
+            foreach ($values as $item) {
+                if (Str::contains(Str::lower($category), $item)) {
+                    $category = $name;
+                }
+            }
+        }
+        return $category;
+    }
+
     public function saveNews($link)
     {
         $xml = XmlParser::load($link);
@@ -28,17 +54,13 @@ class XMLParserService
 //        dump($categoriesCollect->toArray());
 
         foreach ($data['news'] as $item) {
-            if ((!is_null($item['category']) && !$categoriesCollect->contains($item['category'])) ||
-                (is_null($item['category']) && !$categoriesCollect->contains($data['title']))) {
+            $category = $this->categoriesFilter($item['category'] ?? $data['title']);
+            if (!$categoriesCollect->contains($category)) {
                 $newCategoriesData->add([
-                    'name' => $item['category'] ?? $data['title'],
-                    'slug' => Str::slug($item['category'] ?? Str::slug($data['title']))
+                    'name' => $category,
+                    'slug' => Str::slug($category)
                 ]);
-                if (is_null($item['category'])) {
-                    $categoriesCollect->add($data['title']);
-                } else {
-                    $categoriesCollect->add($item['category']);
-                }
+                $categoriesCollect->add($category);
             }
         }
 //        dump($categoriesCollect->toArray());
@@ -49,16 +71,13 @@ class XMLParserService
         $newNewsData = collect();
         foreach ($data['news'] as $item) {
             if (!$newsCollect->contains($item['title'])) {
-                $categoryName = $item['category'] ?? $data['title'];
+                $categoryName = $this->categoriesFilter($item['category'] ?? $data['title']);
                 $categoryId = $categories[$categoryName]['id'];
-//                $categoryId = Category::query()->where('name', $item['category'])->pluck('id')->first();
-                $newNewsData->add([
-                    'title' => $item['title'],
+                $newNewsData->add(['title' => $item['title'],
                     'text' => $item['description'],
                     'image' => $item['enclosure::url'],
                     'category_id' => $categoryId,
-                    'link' => $item['link']
-                ]);
+                    'link' => $item['link']]);
                 $newsCollect->add($item['title']);
             }
         }
