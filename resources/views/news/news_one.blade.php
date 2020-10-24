@@ -26,10 +26,6 @@
                     </div>
                     <div class="card-body">
                         <div class="card-text">
-                            <div class="row">
-                                <p class="col-2"><strong>Имя</strong></p>
-                                <p class="col-9">Комментарий</p>
-                            </div>
                             <div class="comments-list">
                                 @forelse($comments as $comment)
                                     <div class="row comment-item">
@@ -93,8 +89,3 @@
         <div class="container">Такой новости нет</div>
     @endif
 @endsection
-<script>
-
-
-
-</script>
