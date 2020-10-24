@@ -33,9 +33,9 @@
                             <div class="comments-list">
                                 @forelse($comments as $comment)
                                     <div class="row comment-item">
-                                        <p class="col-2"><strong>{{ $comment['name'] }}</strong></p>
-                                        <p class="col-10">{{ $comment['comment'] }}</p>
-                                        <p class="col-12">
+                                        <p class="col-md-2"><strong>{{ $comment['name'] }}</strong></p>
+                                        <p class="col-md-10">{{ $comment['comment'] }}</p>
+                                        <p class="col-md-12">
                                             <a href="#" data-comment-id="{{ $comment['id'] }}"
                                                class="reply-btn">ответить
                                             </a>

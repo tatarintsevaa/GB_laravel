@@ -9,10 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function createCommentElement(data) {
         const commentElement = document.createElement('div');
         commentElement.classList.add('row', 'comment-item', 'bg-light');
-        commentElement.innerHTML = `<p class="col-2"><strong>${data.name}</strong></p>
-                                            <p class="col-9">${data.comment}</p>
-                                            <p class="col-1">
-                                            <p class="col-12">
+        commentElement.innerHTML = `<p class="col-md-2"><strong>${data.name}</strong></p>
+                                            <p class="col-md-10">${data.comment}</p>
+                                            <p class="col-md-12">
                                         </p>
                                         </p>`;
         return commentElement;
