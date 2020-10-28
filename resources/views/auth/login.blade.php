@@ -69,7 +69,7 @@
                         </div>
                     </form>
                     <div class="row p-1 mt-2">
-                        <div class="col-md-4 text-right">
+                        <div class="col-md-4 col-form-label text-md-right">
                             Вход через соц. сети
                         </div>
                         <div class="row col-md-6">

@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function show(string $name) {
         $category = Category::query()->where('slug', $name)->first();
-        $news = Category::find($category->id)->news()->paginate(8);
+        $news = Category::find($category->id)->news()->orderByDesc('id')->paginate(8);
         return view('news.news')
             ->with('news', $news)
             ->with('category', $category->name);
